@@ -124,7 +124,7 @@ nav h1 a {
 /* ====================== Restaurant Filtering ====================== */
 
 #filter-container {
-  background-color: #3397DB;
+  background-color: #1278c5;
   height: 90px;
 }
 
@@ -155,6 +155,11 @@ nav h1 a {
   width: 49%;
   max-width: 200px;
 }
+
+.filter-options select:focus,
+.filter-options select:hover {
+  outline: 3px solid orange;
+} 
 
 /* ====================== Restaurant Listing ====================== */
 #restaurants-list {
@@ -204,7 +209,7 @@ nav h1 a {
   width: calc(100% + 20px);
 }
 #restaurants-list li h1 {
-  color: #de7800;
+  color: #c55400;
   font-family: Arial,sans-serif;
   font-size: 1em;
   font-weight: 200;
@@ -218,7 +223,7 @@ nav h1 a {
   font-size: 0.8em;
 }
 #restaurants-list li a {
-  background-color: orange;
+  background-color: #c55400;
   border-bottom: 3px solid #eee;
   color: #fff;
   display: inline-block;
