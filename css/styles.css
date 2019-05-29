@@ -89,6 +89,7 @@ nav h1 a {
     background-color: #eee;
     font-size: 17px;
     margin: 0;
+    white-space: nowrap;
 }
 
 /* Display list items side by side */
@@ -125,7 +126,6 @@ nav h1 a {
 
 #filter-container {
   background-color: #1278c5;
-  height: 90px;
 }
 
 .filter-options {
@@ -133,7 +133,7 @@ nav h1 a {
   max-width: 1280px;
   margin: 0 auto;
   align-items: center;
-  padding: 15px;
+  padding: 15px 15px 10px;
   box-sizing: border-box;
 }
 .filter-options h2 {

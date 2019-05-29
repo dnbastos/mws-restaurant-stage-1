@@ -4,13 +4,29 @@ let restaurants,
 var map
 var markers = []
 
+
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
+  registerServiceWorker();
   fetchNeighborhoods();
   fetchCuisines();
 });
+
+registerServiceWorker = () => {
+  if (navigator.serviceWorker) {
+    navigator.serviceWorker.register('/sw.js')
+      .then(function (registration) {
+        console.log(registration);
+      })
+      .catch(function (e) {
+        console.error(e);
+      })
+  } else {
+    console.log('Service Worker is not supported in this browser.');
+  }
+}
 
 /**
  * Fetch all neighborhoods and set their HTML.
@@ -153,7 +169,7 @@ createRestaurantHTML = (restaurant) => {
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
   image.alt = restaurant.name;
   image.className = 'restaurant-img';
-  
+
   picture.append(source1);
   picture.append(source2);
   picture.append(image);
