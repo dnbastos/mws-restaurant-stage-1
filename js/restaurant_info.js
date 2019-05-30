@@ -1,7 +1,7 @@
 let restaurant;
 var map;
 
-window.onload = function () { 
+window.onload = () => { 
   initialize(); 
 }
 

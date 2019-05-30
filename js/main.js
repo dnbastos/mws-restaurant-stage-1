@@ -4,7 +4,7 @@ let restaurants,
 var map
 var markers = []
 
-window.onload = function () { 
+window.onload = () => { 
   initialize(); 
 }
 

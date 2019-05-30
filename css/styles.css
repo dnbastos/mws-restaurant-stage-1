@@ -4,7 +4,6 @@
 *{
   box-sizing: border-box;
 }
-
 body,td,th,p{
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14pt;
@@ -155,7 +154,6 @@ nav h1 a {
   width: 49%;
   max-width: 200px;
 }
-
 .filter-options select:focus,
 .filter-options select:hover {
   outline: 3px solid orange;
@@ -189,13 +187,11 @@ nav h1 a {
     width: calc(50% - 15px * 2);
   }
 }
-
 @media (min-width: 900px) {
   #restaurants-list li {
     width: calc(33.333% - 15px * 2);
   }
 }
-
 @media (min-width: 1200px) {
   #restaurants-list li {
     width: calc(25% - 15px * 2);
@@ -294,9 +290,6 @@ nav h1 a {
   line-height: 1.1;
   margin-top: 125px;
 }
-/* #restaurant-img {
-	width: 90%;
-} */
 #restaurant-address {
   font-size: 12pt;
   margin: 10px 0px;
@@ -327,13 +320,11 @@ nav h1 a {
     clear: both;
   }
 }
-
 @media (min-width: 900px) { 
   #restaurant-container, #reviews-container {
     width: 40%;
   }
 }
-
 @media (min-width: 1280px) { 
   #restaurant-container, #reviews-container {
     width: 25%;
