@@ -1,3 +1,6 @@
+/**
+ * Register Service Worker.
+ */
 window.onload = function() {
     if (navigator.serviceWorker) {
     navigator.serviceWorker.register('/sw.js')

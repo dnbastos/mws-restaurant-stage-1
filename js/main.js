@@ -4,6 +4,18 @@ let restaurants,
 var map
 var markers = []
 
+window.onload = function () { 
+  initialize(); 
+}
+
+initialize = () => {
+  updateRestaurants();
+   //google maps fallback
+  const foundGoogle = typeof google === 'object' && typeof google.maps === 'object'
+  if (!foundGoogle) {
+    document.getElementById('map-container').remove();
+  }
+}
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
@@ -73,7 +85,7 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
 /**
  * Initialize Google map, called from HTML.
  */
-window.initMap = () => {
+initMap = () => {
   let loc = {
     lat: 40.722216,
     lng: -73.987501
@@ -83,7 +95,6 @@ window.initMap = () => {
     center: loc,
     scrollwheel: false
   });
-  updateRestaurants();
 }
 
 /**
@@ -174,8 +185,9 @@ createRestaurantHTML = (restaurant) => {
 
   const more = document.createElement('a');
   more.innerHTML = 'View Details';
-  more.href = DBHelper.urlForRestaurant(restaurant);
+  more.href = './restaurant.html';
   more.setAttribute('aria-label', `Read more about ${restaurant.name}.`);
+  more.addEventListener('click', ev => DBHelper.storageCurrRestaurant(restaurant));
   li.append(more)
 
   return li

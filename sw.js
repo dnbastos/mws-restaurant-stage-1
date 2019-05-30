@@ -1,5 +1,8 @@
-var staticCacheName = 'mws-v3';
+var staticCacheName = 'mws-v1';
 
+/**
+ * Cache our files after registration 
+ */
 self.addEventListener('install', function (event) {
   event.waitUntil(
     caches.open(staticCacheName).then(function (cache) {
@@ -9,13 +12,18 @@ self.addEventListener('install', function (event) {
         'js/main.js',
         'js/dbhelper.js',
         'js/restaurant_info.js',
+        'js/initSw.js',
         'css/styles.css',
-        'data/restaurants.json'
+        'data/restaurants.json',
+        'img/default_restaurant.jpg'
       ]);
     })
   );
 });
 
+/**
+ * Remove old cache from old versions
+ */
 self.addEventListener('activate', function (event) {
   event.waitUntil(
     caches.keys().then(function (cacheNames) {
@@ -31,6 +39,9 @@ self.addEventListener('activate', function (event) {
   );
 });
 
+/**
+ * Respond with cache or request
+ */
 self.addEventListener('fetch', function (event) {
   const requestUrl = new URL(event.request.url);
   if (requestUrl.origin === location.origin) {
@@ -38,15 +49,18 @@ self.addEventListener('fetch', function (event) {
       event.respondWith(caches.match('/index.html'));
       return;
     }
-    if (requestUrl.pathname === '/restaurant.html') {
-      event.respondWith(caches.match('/restaurant.html'));
-      return;
-    }
+  }
+
+  if (event.request.destination === 'image') {
+    event.respondWith(
+      fetch(event.request)
+      .catch(() => caches.match('img/default_restaurant.jpg'))
+    );
+    return;
   }
 
   event.respondWith(
     caches.match(event.request).then(function (response) {
-      console.log(event.request, response ? 'FOI DO CACHE!' : 'NÃO FOI DO CACHE :(');
       return response || fetch(event.request);
     })
   );

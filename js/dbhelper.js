@@ -140,13 +140,6 @@ class DBHelper {
   }
 
   /**
-   * Restaurant page URL.
-   */
-  static urlForRestaurant(restaurant) {
-    return (`./restaurant.html?id=${restaurant.id}`);
-  }
-
-  /**
    * Restaurant image URL.
    */
   static imageUrlForRestaurant(restaurant, size) {
@@ -163,14 +156,21 @@ class DBHelper {
    * Map marker for a restaurant.
    */
   static mapMarkerForRestaurant(restaurant, map) {
+    DBHelper.storageCurrRestaurant(restaurant);
     const marker = new google.maps.Marker({
       position: restaurant.latlng,
       title: restaurant.name,
-      url: DBHelper.urlForRestaurant(restaurant),
+      url: './restaurant.html',
       map: map,
       animation: google.maps.Animation.DROP}
     );
     return marker;
   }
 
+  /**
+   * Put current restaurant id on localStorage.
+   */
+  static storageCurrRestaurant(restaurant) {
+    window.localStorage.setItem('currRestaurantId', restaurant.id)
+  }
 }

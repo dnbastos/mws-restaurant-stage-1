@@ -1,36 +1,49 @@
 let restaurant;
 var map;
 
-/**
- * Initialize Google map, called from HTML.
- */
-window.initMap = () => {
-  fetchRestaurantFromURL((error, restaurant) => {
+window.onload = function () { 
+  initialize(); 
+}
+
+initialize = () => {
+  fetchRestaurantFromLocalStorage((error, restaurant) => {
+    //check google connection
+    const foundGoogle = typeof google === 'object' && typeof google.maps === 'object';
     if (error) { // Got an error!
       console.error(error);
-    } else {
-      self.map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 16,
-        center: restaurant.latlng,
-        scrollwheel: false
-      });
+    } else if (foundGoogle) {
+      initMap(self.restaurant);
       fillBreadcrumb();
       DBHelper.mapMarkerForRestaurant(self.restaurant, self.map);
+    } else {
+      document.getElementById('map-container').remove();
     }
   });
 }
 
 /**
- * Get current restaurant from page URL.
+ * Initialize Google map, called from HTML.
  */
-fetchRestaurantFromURL = (callback) => {
+window.initMap = (restaurant) => {
+  if (!restaurant) return;
+  self.map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 16,
+    center: restaurant.latlng,
+    scrollwheel: false
+  });
+}
+
+/**
+ * Get current restaurant from page localStorage.
+ */
+fetchRestaurantFromLocalStorage = (callback) => {
   if (self.restaurant) { // restaurant already fetched!
     callback(null, self.restaurant)
     return;
   }
-  const id = getParameterByName('id');
-  if (!id) { // no id found in URL
-    error = 'No restaurant id in URL'
+  const id = getParameterByName('currRestaurantId');
+  if (!id) { // no id found in LocalStorage
+    error = 'No restaurant id in LocalStorage'
     callback(error, null);
   } else {
     DBHelper.fetchRestaurantById(id, (error, restaurant) => {
@@ -148,17 +161,8 @@ fillBreadcrumb = (restaurant=self.restaurant) => {
 }
 
 /**
- * Get a parameter by name from page URL.
+ * Get a parameter by name from localStorage.
  */
-getParameterByName = (name, url) => {
-  if (!url)
-    url = window.location.href;
-  name = name.replace(/[\[\]]/g, '\\$&');
-  const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`),
-    results = regex.exec(url);
-  if (!results)
-    return null;
-  if (!results[2])
-    return '';
-  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+getParameterByName = (name) => {
+  return window.localStorage.getItem(name);
 }
