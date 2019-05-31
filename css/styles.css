@@ -83,36 +83,36 @@ nav h1 a {
   text-transform: uppercase;
 }
 #breadcrumb {
-    padding: 10px 40px 10px;
-    list-style: none;
-    background-color: #eee;
-    font-size: 17px;
-    margin: 0;
-    white-space: nowrap;
+  padding: 10px 40px 10px;
+  list-style: none;
+  background-color: #eee;
+  font-size: 17px;
+  margin: 0;
+  white-space: nowrap;
 }
 
 /* Display list items side by side */
 #breadcrumb li {
-    display: inline;
+  display: inline;
 }
 
 /* Add a slash symbol (/) before/behind each list item */
 #breadcrumb li+li:before {
-    padding: 8px;
-    color: black;
-    content: "/\00a0";
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
 }
 
 /* Add a color to all links inside the list */
 #breadcrumb li a {
-    color: #006bc7;
-    text-decoration: none;
+  color: #006bc7;
+  text-decoration: none;
 }
 
 /* Add a color on mouse-over */
 #breadcrumb li a:hover {
-    color: #01447e;
-    text-decoration: underline;
+  color: #01447e;
+  text-decoration: underline;
 }
 /* ====================== Map ====================== */
 #map {
@@ -178,7 +178,7 @@ nav h1 a {
   padding: 0 10px 70px;
   float: left;
   box-sizing: border-box;
-  min-height: 420px; 
+  min-height: 430px; 
   position: relative;
 }
 
@@ -204,7 +204,7 @@ nav h1 a {
   margin: 0 -10px;
   width: calc(100% + 20px);
 }
-#restaurants-list li h1 {
+#restaurants-list li h3 {
   color: #c55400;
   font-family: Arial,sans-serif;
   font-size: 1em;
