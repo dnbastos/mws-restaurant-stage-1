@@ -4,7 +4,7 @@
 
 For the Restaurant Reviews project, I converted a static webpage to a mobile-ready web application. First, I take a static design that lacks **accessibility** and convert the design to be **responsive** on different sized displays and accessible for **screen reader use**. I also add a service worker to create a seamless **offline experience** for the users.
 
-For the project instructions and how I got started, check this [branch](/dnbastos/restaurant-reviews/initial_code). 
+For the project instructions and initial code on how I got started, check this [branch](./../../tree/initial-code). 
 
 ## Instructions
 
